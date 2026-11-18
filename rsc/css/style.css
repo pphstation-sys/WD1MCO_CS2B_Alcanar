@@ -189,11 +189,19 @@ img.gal:hover{transform:rotate(0) scale(1.04);box-shadow:14px 14px 0 var(--r)}
 .table-striped>tbody>tr:nth-of-type(odd)>*{--bs-table-accent-bg:#ffd90f55}
 
 /* ===== CINEMA ===== */
-#cinema .pop{padding:22px 22px 20px;border-left:14px solid var(--r);border-right:6px dashed #000;display:block;background:linear-gradient(90deg,#fff 75%,var(--cream))}
-#cinema h5{color:var(--r);font-size:1.55rem}
-#cinema h5::before{content:"🎟️ "}
-#cinema .badge{margin:3px 3px 0 0}
-#cinema p{font-weight:700}
+/* ===== FIX: cinema maliit + pantay na pictures ===== */
+#cinema .pop{padding:10px 14px;border:3px solid #000;background:#fff;box-shadow:6px 6px 0 #000;border-radius:14px;overflow-x:auto;animation:none}
+#cinema .pop:hover{transform:none;box-shadow:6px 6px 0 #000}
+#cinema table{margin:0;font-size:.9rem}
+#cinema th{width:auto;font-size:1rem;padding:6px 10px;white-space:nowrap}
+#cinema td{padding:6px 10px;font-size:.88rem;line-height:1.3}
+#cinema td:last-child{white-space:nowrap}
+#cinema h5::before{content:none}
+#cinema .badge{font-size:.8rem;padding:.25em .5em}
+
+.ccard img{width:170px;height:170px;max-width:none;aspect-ratio:1/1;object-fit:cover;object-position:top;display:block}
+.ccard .cimg img{width:100%;height:100%}
+.vc .vside img{width:110px;height:110px;max-width:none;aspect-ratio:1/1;object-fit:cover;object-position:top}
 
 /* ===== CART ===== */
 .offcanvas{border-left:5px solid #000}
