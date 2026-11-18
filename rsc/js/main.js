@@ -1,10 +1,5 @@
 /* ===== DEVELOPERS: palitan ng totoong pangalan ===== */
-const DEV=[
- ["Juan Dela Cruz","Leader • Feature Page","media/img/devs/juan.jpg"],
- ["Maria Santos","Characters Page","media/img/devs/maria.jpg"],
- ["Jose Reyes","Products & Cart","media/img/devs/jose.jpg"],
- ["Ana Garcia","Header, Footer & Design","media/img/devs/ana.jpg"]
-];
+
 
 /* ===== Placeholder kapag walang picture ===== */
 const PH="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="300" height="300" fill="#FFD90F"/><text x="150" y="160" font-size="30" font-family="Arial" font-weight="bold" text-anchor="middle" fill="#07070D">ADD PHOTO</text></svg>');
