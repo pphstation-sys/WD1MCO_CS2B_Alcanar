@@ -11,7 +11,7 @@ const $=id=>document.getElementById(id);
 
 /* ===== HEADER ===== */
 $("site-header").innerHTML=`<nav class="navbar navbar-expand-lg navbar-dark nav-dm sticky-top"><div class="container">
-<a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img src="media/img/media/img/despicable-me-3-2.jpg" class="logo" alt="Logo"><span>Despicable Me 3</span></a>
+<a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img src="media/img/despicable-me-3-2.jpg" class="logo" alt="Logo"><span>Despicable Me 3</span></a>
 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nv"><span class="navbar-toggler-icon"></span></button>
 <div class="collapse navbar-collapse" id="nv"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
 <li class="nav-item"><a class="nav-link" href="index.html#cinema">Cinema</a></li>
