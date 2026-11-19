@@ -1,20 +1,21 @@
 (function () {
   /* =============== PALITAN MO ITO =============== */
   const LOGO = 'media/img/despicable-me-3-2.jpg';
-  const DEVS = [               // [pangalan, role, picture (optional, pwedeng '')]
-    ['Aldrin Alcanar', 'Leader', ''],
-    ['Member 2 Name', 'Role', ''],
-    ['Member 3 Name', 'Role', ''],
-    ['Member 4 Name', 'Role', '']
+  const DEVS = [                       // PANGALAN LANG
+    'Aldrin Alcanar',
+    'Member 2 Name',
+    'Member 3 Name',
+    'Member 4 Name'
   ];
-  const FREE = 1500;           // free shipping kapag umabot dito
-  const SHIP = 50;             // shipping fee
+  const FREE = 1500;                   // free shipping kapag umabot dito
+  const SHIP = 50;                     // shipping fee
   const PROMOS = { MINION10: { t: '%', v: 10 }, BANANA100: { t: '₱', v: 100 } };
   /* ============================================== */
 
   const KEY = 'dm3cart2', PKEY = 'dm3promo';
   const page = location.pathname.split('/').pop() || 'index.html';
   const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const peso = n => '₱' + Number(n).toLocaleString('en-PH');
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const PH = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect width="200" height="200" fill="#FFD90F"/><text x="50%" y="50%" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="22" fill="#000">NO PHOTO</text></svg>');
@@ -34,8 +35,19 @@
   st.textContent = `
   html{scroll-behavior:smooth}
   #dmBar{position:fixed;top:0;left:0;height:6px;width:0;z-index:4000;background:linear-gradient(90deg,#D7263D,#FFD90F,#0072BB);border-bottom:2px solid #000;transition:width .1s}
+
+  /* header layout */
   .nav-dm{transition:box-shadow .3s}
   .nav-dm.scrolled{box-shadow:0 6px 0 rgba(0,0,0,.35)}
+  .nav-dm > .container{max-width:100% !important;padding-left:24px;padding-right:24px}
+  .nav-dm .navbar-brand{display:flex !important;align-items:center;gap:10px;flex-shrink:0;white-space:nowrap;margin:0 auto 0 0}
+  .nav-dm .navbar-brand span{font-size:1.6rem;line-height:1;white-space:nowrap}
+  .nav-dm .logo{height:46px !important;width:auto !important;flex-shrink:0}
+  .nav-dm .navbar-nav{align-items:center;gap:4px}
+  .nav-dm .nav-link{display:flex !important;flex-direction:row !important;align-items:center;gap:6px;white-space:nowrap;padding:.4rem .9rem !important;font-size:1.1rem;margin:0}
+  .nav-dm .nav-link .bi{font-size:1.2rem;line-height:1;display:inline-block}
+  .nav-dm .nav-link .badge{position:static !important;transform:none}
+  @media(max-width:767px){.nav-dm .navbar-nav{align-items:flex-start}.nav-dm .navbar-brand span{font-size:1.2rem}}
   #cnt.bump{animation:dmBump .5s}
   @keyframes dmBump{0%{transform:scale(1)}40%{transform:scale(1.8) rotate(-12deg)}100%{transform:scale(1)}}
 
@@ -95,16 +107,30 @@
   .done-ic{font-size:4.5rem;animation:dmPop .6s cubic-bezier(.3,1.7,.5,1)}
   @keyframes dmPop{from{transform:scale(0) rotate(-90deg)}to{transform:none}}
 
-  /* footer devs */
-  .dev{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-  .dav{width:40px;height:40px;border-radius:50%;background:#FFD90F;color:#000;border:3px solid #000;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;font-family:'Bangers',cursive;font-size:1.2rem;box-shadow:2px 2px 0 rgba(0,0,0,.4)}
-  .dav img{width:100%;height:100%;object-fit:cover}
-  .dev small{opacity:.8;display:block;line-height:1.1}`;
+  /* footer: developed by (names only) */
+  .devs{list-style:none;padding:0;margin:0}
+  .devs li{font-weight:800;font-size:1.05rem;padding:3px 0;transition:transform .2s}
+  .devs li:hover{transform:translateX(8px)}
+
+  /* products toolbar */
+  .ptool{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#fff;border:3px solid #000;border-radius:16px;box-shadow:6px 6px 0 #000;padding:10px 14px;margin-bottom:24px}
+  .ptool input,.ptool select{border:3px solid #000;border-radius:12px;font-weight:700;padding:6px 12px;background:#fff;outline:0}
+  .ptool input{flex:1;min-width:180px}
+  .ptool input:focus,.ptool select:focus{box-shadow:4px 4px 0 #0072BB}
+  .ptool .pc{font-weight:800;margin-left:auto}
+  .pnone{display:none;text-align:center;background:#fff;border:3px dashed #000;border-radius:16px;padding:30px;font-weight:800;font-size:1.2rem;margin-top:10px}
+  .pimg img{cursor:zoom-in}
+
+  /* lightbox */
+  #lb{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:8000;display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+  #lb.on{display:flex}
+  #lb img{max-width:min(92vw,820px);max-height:88vh;background:#fff;border:5px solid #FFD90F;border-radius:18px;box-shadow:10px 10px 0 #000;animation:dmPop .35s cubic-bezier(.3,1.5,.5,1)}
+  #lb b{position:absolute;top:14px;right:22px;color:#FFD90F;font-size:2.4rem;line-height:1}`;
   document.head.appendChild(st);
 
-  /* ---------- PROGRESS BAR + BACK TO TOP ---------- */
+  /* ---------- PROGRESS BAR + BACK TO TOP + LIGHTBOX ---------- */
   document.body.insertAdjacentHTML('afterbegin', '<div id="dmBar"></div>');
-  document.body.insertAdjacentHTML('beforeend', '<button id="dmTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button><div id="dmToast"></div>');
+  document.body.insertAdjacentHTML('beforeend', '<button id="dmTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button><div id="dmToast"></div><div id="lb"><b>&times;</b><img alt=""></div>');
 
   /* ---------- HEADER ---------- */
   let hd = $('#site-header');
@@ -131,11 +157,6 @@
   /* ---------- FOOTER ---------- */
   let ft = $('#site-footer');
   if (!ft) { ft = document.createElement('footer'); ft.id = 'site-footer'; document.body.appendChild(ft); }
-  const devHTML = d => {
-    const ini = esc((d[0] || '?').trim().charAt(0).toUpperCase());
-    const av = d[2] ? `<img src="${esc(d[2])}" alt="${esc(d[0])}" onerror="this.replaceWith(document.createTextNode('${ini}'))">` : ini;
-    return `<li class="dev"><span class="dav">${av}</span><span><b>${esc(d[0])}</b><small>${esc(d[1])}</small></span></li>`;
-  };
   ft.innerHTML = `
   <div class="container py-4">
     <div class="row g-4">
@@ -151,7 +172,7 @@
       </div>
       <div class="col-md-4">
         <h5>Developed by:</h5>
-        <ul class="list-unstyled m-0">${DEVS.map(devHTML).join('')}</ul>
+        <ul class="devs">${DEVS.map(n => `<li>${esc(n)}</li>`).join('')}</ul>
       </div>
       <div class="col-md-4">
         <h5>Menu</h5>
@@ -332,8 +353,53 @@
     else $('#pm').innerHTML = '<span class="text-danger">✗ Invalid promo code</span>';
   }
 
+  /* ---------- PRODUCTS: SEARCH + SORT ---------- */
+  const grid = page === 'products.html' ? $('.row-cols-lg-4') : null;
+  if (grid) {
+    const cols = $$(':scope > .col', grid);
+    const priceOf = c => { const b = $('.add', c); return b ? parseFloat(b.dataset.price) || 0 : 0; };
+    const nameOf = c => { const h = $('h5,h4,h3', c); return h ? h.textContent.trim().toLowerCase() : ''; };
+    grid.insertAdjacentHTML('beforebegin', `
+      <div class="ptool">
+        <input id="pq" type="search" placeholder="🔍 Search merch...">
+        <select id="ps">
+          <option value="d">Sort: Default</option>
+          <option value="lo">Price: Low to High</option>
+          <option value="hi">Price: High to Low</option>
+          <option value="az">Name: A to Z</option>
+        </select>
+        <span class="pc" id="pc"></span>
+      </div>`);
+    grid.insertAdjacentHTML('afterend', '<div class="pnone" id="pnone">😢 Walang nahanap na product.</div>');
+    const run = () => {
+      const q = $('#pq').value.trim().toLowerCase(), s = $('#ps').value;
+      let list = cols.slice();
+      if (s === 'lo') list.sort((a, b) => priceOf(a) - priceOf(b));
+      if (s === 'hi') list.sort((a, b) => priceOf(b) - priceOf(a));
+      if (s === 'az') list.sort((a, b) => nameOf(a).localeCompare(nameOf(b)));
+      let shown = 0;
+      list.forEach(c => {
+        grid.appendChild(c);
+        const ok = !q || nameOf(c).includes(q) || c.textContent.toLowerCase().includes(q);
+        c.style.display = ok ? '' : 'none';
+        if (ok) shown++;
+      });
+      $('#pc').textContent = shown + ' / ' + cols.length + ' items';
+      $('#pnone').style.display = shown ? 'none' : 'block';
+    };
+    $('#pq').addEventListener('input', run);
+    $('#ps').addEventListener('change', run);
+    run();
+  }
+
   /* ---------- EVENTS (delegation) ---------- */
   document.addEventListener('click', e => {
+    /* zoom picture */
+    const zi = e.target.closest('.pimg img');
+    if (zi) { const lb = $('#lb'); $('img', lb).src = zi.src; lb.classList.add('on'); return; }
+    if (e.target.closest('#lb')) { $('#lb').classList.remove('on'); return; }
+
+    /* add to cart */
     const b = e.target.closest('.add');
     if (b) {
       const card = b.closest('.pcard') || b.closest('.card') || b.parentElement;
@@ -384,7 +450,10 @@
     }
   });
 
-  document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'promoIn') { e.preventDefault(); applyPromo(); } });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') $('#lb').classList.remove('on');
+    if (e.key === 'Enter' && e.target.id === 'promoIn') { e.preventDefault(); applyPromo(); }
+  });
   document.addEventListener('change', e => { if (e.target.name === 'pay') setNote(); });
 
   $('#ckf').addEventListener('submit', e => {
