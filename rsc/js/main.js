@@ -3,9 +3,9 @@
   const LOGO = 'media/img/despicable-me-3-2.jpg';
   const DEVS = [                       // PANGALAN LANG
     'Aldrin Alcanar',
-    'Member 2 Name',
-    'Member 3 Name',
-    'Member 4 Name'
+    'Angel Mae Batin',
+    'Jamilla Lucille Gagtan',
+    'Kheryne Faith Gabor'
   ];
   const FREE = 1500;                   // free shipping kapag umabot dito
   const SHIP = 50;                     // shipping fee
