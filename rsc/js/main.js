@@ -1,8 +1,7 @@
 (function () {
-  /* =============== PALITAN MO ITO =============== */
   const LOGO = 'media/img/despicable-me-3-2.jpg';
-  const DEVS = [                       // PANGALAN LANG
-    'Aldrin Alcanar',
+  const DEVS = [                      
+    'Dave Justin Alcanar',
     'Angel Mae Batin',
     'Jamilla Lucille Gagtan',
     'Kheryne Faith Gabor'
