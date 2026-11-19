@@ -2,10 +2,10 @@
   
   const LOGO = 'media/img/despicable-me-3-2.jpg';
   const DEVS = [
-    ['Alcanar Dave Justin', 'Leader - Feature page'],
-    ['Angel Mae Batin', 'Character page'],
-    ['Jamilla Lucille Gagtan', 'Product and add to cart page'],
-    ['Kheryne Faith Gabor', 'Header, footer and design']
+    ['Alcanar Dave Justin'],
+    ['Angel Mae Batin'],
+    ['Jamilla Lucille Gagtan'],
+    ['Kheryne Faith Gabor',]
   ];
   /* ============================ */
 
