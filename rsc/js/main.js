@@ -29,7 +29,7 @@
   const save = () => { localStorage.setItem(KEY, JSON.stringify(cart)); localStorage.setItem(PKEY, promo); };
   load();
 
-  /* ---------- STYLE (kasama na sa file) ---------- */
+  /*STYLE */
   const st = document.createElement('style');
   st.textContent = `
   html{scroll-behavior:smooth}
@@ -127,11 +127,11 @@
   #lb b{position:absolute;top:14px;right:22px;color:#FFD90F;font-size:2.4rem;line-height:1}`;
   document.head.appendChild(st);
 
-  /* ---------- PROGRESS BAR + BACK TO TOP + LIGHTBOX ---------- */
+  /* PROGRESS BAR */
   document.body.insertAdjacentHTML('afterbegin', '<div id="dmBar"></div>');
   document.body.insertAdjacentHTML('beforeend', '<button id="dmTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button><div id="dmToast"></div><div id="lb"><b>&times;</b><img alt=""></div>');
 
-  /* ---------- HEADER ---------- */
+  /* HEADER */
   let hd = $('#site-header');
   if (!hd) { hd = document.createElement('header'); hd.id = 'site-header'; document.body.prepend(hd); }
   const act = p => (page === p ? ' active' : '');
@@ -153,7 +153,7 @@
     </div>
   </nav>`;
 
-  /* ---------- FOOTER ---------- */
+  /* FOOTER */
   let ft = $('#site-footer');
   if (!ft) { ft = document.createElement('footer'); ft.id = 'site-footer'; document.body.appendChild(ft); }
   ft.innerHTML = `
@@ -183,10 +183,10 @@
         </ul>
       </div>
     </div>
-    <hr><p class="text-center small m-0">© Despicable Me 3 • Made for WD1 CS2B</p>
+    <hr><p class="text-center small m-0">© Despicable Me 3 • promotion website</p>
   </div>`;
 
-  /* ---------- CART + CHECKOUT (inject) ---------- */
+  /* CART + CHECKOUT */
   document.body.insertAdjacentHTML('beforeend', `
   <div class="offcanvas offcanvas-end" id="cart" tabindex="-1">
     <div class="offcanvas-header"><h5 class="m-0">🛒 YOUR CART</h5><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
@@ -246,7 +246,7 @@
     </div>
   </div>`);
 
-  /* ---------- helpers ---------- */
+  /*  helpers */
   let tt;
   function toast(msg, img) {
     const t = $('#dmToast');
@@ -391,7 +391,7 @@
     run();
   }
 
-  /* ---------- EVENTS (delegation) ---------- */
+  /*EVENTS (delegation) */
   document.addEventListener('click', e => {
     /* zoom picture */
     const zi = e.target.closest('.pimg img');
@@ -472,7 +472,7 @@
     e.target.reset(); setNote(); confetti();
   });
 
-  /* ---------- SCROLL EFFECTS ---------- */
+  /*SCROLL EFFECTS */
   const nav = $('.nav-dm'), bar = $('#dmBar'), top = $('#dmTop');
   function onScroll() {
     const h = document.documentElement, y = h.scrollTop || document.body.scrollTop;
